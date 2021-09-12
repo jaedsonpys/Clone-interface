@@ -1,21 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import Header from './src/components/Header'
+import Main from './src/components/Main';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Poppins_400Regular, Poppins_500Medium } from '@expo-google-fonts/poppins'
 
 export default function App() {
+  var [appfonts] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium
+  })
+
+  if(!appfonts){
+    return <AppLoading/>
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <StatusBar style={{backgroundColor: 'white'}}/>
+      <Header/>
+      <Main/>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    paddingTop: 70,
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: '#F3F3F3',
+    flex: 1
+  }
 });
